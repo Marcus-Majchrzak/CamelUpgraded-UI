@@ -1,15 +1,9 @@
-import React, {
-  useState,
-  useCallback,
-  useMemo,
-  useRef,
-  useEffect,
-} from "react";
+import React, { useState, useCallback, useRef } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
-import { Camels, RaceBetTypes, TileType } from "./types";
+import { Camels, RaceBetTypes, RequestDataType, TileType } from "./types";
 
 export interface WebSocketProps {
-  data: any;
+  data: RequestDataType;
   sendMoveAction: () => void;
   sendLegBetAction: (camel: Camels) => void;
   sendRaceBetAction: (camel: Camels, betType: RaceBetTypes) => void;
@@ -63,7 +57,8 @@ export const withWebSocket = <P extends object>(
         tileType,
       });
     };
-    const data = lastMessage?.data;
+
+    const data = JSON.parse(lastMessage ? lastMessage.data : "{}");
     const webSocket = {
       data,
       sendMoveAction,
@@ -71,13 +66,11 @@ export const withWebSocket = <P extends object>(
       sendRaceBetAction,
       sendTileAction,
     };
-    console.log(lastMessage ? lastMessage.data : lastMessage);
-    const message = JSON.parse(lastMessage ? lastMessage.data : "{}");
-    if (message) {
-      switch (message.action) {
+    if (data) {
+      switch (data.action) {
         case "init":
-          console.log(message?.data?.id);
-          id.current = message?.data?.id;
+          console.log(data?.data?.id);
+          id.current = data?.data?.id;
           break;
         case "ready":
           console.log("My Turn!");
@@ -92,7 +85,7 @@ export const withWebSocket = <P extends object>(
           console.log("Couldn't identify action");
       }
     }
-    console.log(">>>", message);
+    console.log(">>>", data);
     return readyState === ReadyState.OPEN ? (
       <WrappedComponent {...(props as P)} {...webSocket} />
     ) : (
