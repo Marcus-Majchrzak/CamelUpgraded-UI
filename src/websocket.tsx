@@ -9,6 +9,7 @@ import useWebSocket, { ReadyState } from "react-use-websocket";
 import { Camels, RaceBetTypes, TileType } from "./types";
 
 export interface WebSocketProps {
+  data: any;
   sendMoveAction: () => void;
   sendLegBetAction: (camel: Camels) => void;
   sendRaceBetAction: (camel: Camels, betType: RaceBetTypes) => void;
@@ -62,7 +63,9 @@ export const withWebSocket = <P extends object>(
         tileType,
       });
     };
+    const data = lastMessage?.data;
     const webSocket = {
+      data,
       sendMoveAction,
       sendLegBetAction,
       sendRaceBetAction,
@@ -91,10 +94,7 @@ export const withWebSocket = <P extends object>(
     }
     console.log(">>>", message);
     return readyState === ReadyState.OPEN ? (
-      <>
-        {lastMessage ? <span>Last message: {lastMessage.data}</span> : null}
-        <WrappedComponent {...(props as P)} {...webSocket} />
-      </>
+      <WrappedComponent {...(props as P)} {...webSocket} />
     ) : (
       <>loading</>
     );
