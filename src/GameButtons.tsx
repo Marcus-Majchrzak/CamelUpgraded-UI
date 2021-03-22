@@ -18,28 +18,17 @@ const ActionButton = styled.button`
 const ActionSpace = styled.div`
   position: absolute;
   background: ${B005};
-  borderradius: 20px;
+  border-radius: 10px;
   bottom: 10px;
   left: 10px;
   display: flex;
-  flexdirection: row;
+  flex-direction: row;
   padding: 0px 10px 0px 10px;
 `;
 
 const GameButtons = (props: WebSocketProps) => {
   return (
-    <div
-      css={{
-        position: "absolute",
-        background: B005,
-        borderRadius: "20px",
-        bottom: "10px",
-        left: "10px",
-        display: "flex",
-        flexDirection: "row",
-        padding: "0px 10px 0px 10px",
-      }}
-    >
+    <ActionSpace>
       <ActionButton onClick={props.sendMoveAction}>Move</ActionButton>
       <ActionButton onClick={() => props.sendLegBetAction(Camels.Blue)}>
         Leg Bet
@@ -54,7 +43,7 @@ const GameButtons = (props: WebSocketProps) => {
       <ActionButton onClick={() => props.sendTileAction(10, TileType.Oasis)}>
         Place Tile
       </ActionButton>
-    </div>
+    </ActionSpace>
   );
 };
 export default GameButtons;

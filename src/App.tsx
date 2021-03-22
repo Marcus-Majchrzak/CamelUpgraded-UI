@@ -7,7 +7,6 @@ function App() {
   return (
     <div
       css={{
-        fontFamily: "Noto Sans",
         position: "fixed",
         top: 0,
         left: 0,

@@ -3,6 +3,7 @@ import useWebSocket, { ReadyState } from "react-use-websocket";
 import { Camels, RaceBetTypes, RequestDataType, TileType } from "./types";
 
 export interface WebSocketProps {
+  id: string;
   data: RequestDataType;
   sendMoveAction: () => void;
   sendLegBetAction: (camel: Camels) => void;
@@ -58,19 +59,25 @@ export const withWebSocket = <P extends object>(
       });
     };
 
-    const data = JSON.parse(lastMessage ? lastMessage.data : "{}");
+    const response = JSON.parse(lastMessage ? lastMessage.data : "{}");
     const webSocket = {
-      data,
+      id: id.current,
+      data: response.data,
       sendMoveAction,
       sendLegBetAction,
       sendRaceBetAction,
       sendTileAction,
     };
-    if (data) {
-      switch (data.action) {
+
+    const gameStarted = (): Boolean => {
+      return id.current !== "NOT-SET";
+    };
+
+    if (response) {
+      switch (response.action) {
         case "init":
-          console.log(data?.data?.id);
-          id.current = data?.data?.id;
+          console.log(response?.id);
+          id.current = response?.id;
           break;
         case "ready":
           console.log("My Turn!");
@@ -85,8 +92,9 @@ export const withWebSocket = <P extends object>(
           console.log("Couldn't identify action");
       }
     }
-    console.log(">>>", data);
-    return readyState === ReadyState.OPEN ? (
+    console.log(">>>", response);
+    webSocket.id = id.current;
+    return readyState === ReadyState.OPEN && gameStarted() ? (
       <WrappedComponent {...(props as P)} {...webSocket} />
     ) : (
       <>loading</>

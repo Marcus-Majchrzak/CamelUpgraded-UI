@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { B005, CB1, CG1, CO1, CR1, CW1, P300, P50 } from "./colours";
-import { Camels, RaceBetTypes, TileType } from "./types";
+import { camelToPrimaryColour, P50 } from "./colours";
+import { Camels } from "./types";
 
 const Camel = styled.div`
   background: ${(props) => props.color};
@@ -19,9 +19,6 @@ const Square = styled.div`
   border: 1px solid #000000;
 `;
 const RaceTrackSpace = styled.div`
-  position: absolute;
-  left: 13%;
-  bottom: 45%;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
@@ -35,13 +32,6 @@ type RaceTrackType = {
   camelPositions: Array<Array<Camels>>;
 };
 const RaceTrack = (props: RaceTrackType) => {
-  const camelToPrimaryColour = {
-    blue: CB1,
-    red: CR1,
-    green: CG1,
-    orange: CO1,
-    white: CW1,
-  };
   console.log(">!!", props);
   return (
     <RaceTrackSpace>

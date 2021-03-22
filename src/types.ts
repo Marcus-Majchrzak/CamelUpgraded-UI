@@ -1,13 +1,22 @@
 
 
 export type RequestDataType = {
-    players: any
+    players: Record<string, PlayerType>
     boardState: BoardStateType
 
 }
+export type PlayerType = {
+    name: string,
+    money: number,
+    legBets: Array<LegBedType>
+}
 export type BoardStateType = {
     camelPositions: Array<Array<Camels>>
-    legBids: Record<Camels, Array<Number>>
+    legBids: Record<Camels, Array<number>>
+}
+export type LegBedType = {
+    value: number,
+    camel: Camels,
 }
 
 
