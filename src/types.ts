@@ -13,6 +13,11 @@ export type PlayerType = {
 export type BoardStateType = {
     camelPositions: Array<Array<Camels>>
     legBids: Record<Camels, Array<number>>
+    diceRolled: Array<DiceRollType>
+}
+export type DiceRollType = {
+    color: Camels
+    value: number
 }
 export type LegBedType = {
     value: number,
