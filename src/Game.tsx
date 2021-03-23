@@ -3,6 +3,7 @@ import { B005 } from "./colours";
 import GameButtons from "./GameButtons";
 import RaceTrack from "./RaceTrack";
 import DiceTrack from "./DiceTrack";
+import PlayerBar from "./PlayerBar";
 import { WebSocketProps, withWebSocket } from "./websocket";
 import PlayerAssets from "./PlayerAssets";
 import styled from "@emotion/styled";
@@ -35,11 +36,13 @@ const Game = (props: WebSocketProps) => {
   const data = props.data;
   const camelPositions = props.data.boardState?.camelPositions;
   const diceRolled = props.data.boardState?.diceRolled;
+  const players = props.data.players;
   const me = props.data?.players[props.id];
 
   return (
     data && (
       <GameArea>
+        <PlayerBar players={players} />
         {camelPositions ? (
           <TrackArea>
             <RaceTrack camelPositions={camelPositions} />

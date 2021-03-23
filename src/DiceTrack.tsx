@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { camelToPrimaryColour, camelToSecondaryColour, P50 } from "./colours";
-import { Camels, DiceRollType } from "./types";
+import { camelToPrimaryColour, camelToSecondaryColour } from "./colours";
+import { DiceRollType } from "./types";
 
 const DiceTrackSpace = styled.div`
   display: flex;

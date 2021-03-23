@@ -1,13 +1,18 @@
+/*COLOUR KEY
+BX  = White with X% opacity
+PX  = Primary colour with X saturation
+SX  = Secondary colour with X saturation
+CXY = Colour for camel X, type Y
+MX  = Misc of type X
+*/
+
 //Shades
 export const White = '#ffffff';
 export const B004  = '#121212';
 export const B005  = 'rgba(255, 255, 255, 0.05)';
+export const B032  = 'rgba(255, 255, 255, 0.32)';
 export const B070  = 'rgba(255, 255, 255, 0.70)';
 export const Black = '#000000';
-
-
-
-
 
 //Primary Colour Range
 export const P500 = '#ff9900';
@@ -15,6 +20,9 @@ export const P400 = '#ffa826';
 export const P300 = '#ffb84d';
 export const P200 = '#ffcd80';
 export const P50  = '#fff3e0';
+
+//Secondary Colour Range
+export const S200 = '#bae2ff';
 
 
 
