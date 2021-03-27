@@ -10,6 +10,7 @@ MX  = Misc of type X
 export const White = '#ffffff';
 export const B004  = '#121212';
 export const B005  = 'rgba(255, 255, 255, 0.05)';
+export const B015  = '#404040'
 export const B032  = 'rgba(255, 255, 255, 0.32)';
 export const B070  = 'rgba(255, 255, 255, 0.70)';
 export const Black = '#000000';

@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { B005 } from "./colours";
-import GameButtons from "./GameButtons";
+import GameButtons from "./GameButtons/GameButtons";
 import RaceTrack from "./RaceTrack";
 import DiceTrack from "./DiceTrack";
 import PlayerBar from "./PlayerBar";

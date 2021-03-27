@@ -41,3 +41,19 @@ export enum Camels {
     Orange = 'orange', 
     White = 'white'
 }
+export const strToCamel = (camel: string): Camels => {
+    switch (camel.toLocaleLowerCase()){
+        case('blue'): 
+            return Camels.Blue
+        case('red'): 
+            return Camels.Red
+        case('green'): 
+            return Camels.Green
+        case('orange'): 
+            return Camels.Orange
+        case('white'): 
+            return Camels.White
+    }
+    throw `String Parameter is not a camel color: "${camel}" (strToCamel)`
+    
+}
