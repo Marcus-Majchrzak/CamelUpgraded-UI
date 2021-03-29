@@ -50,29 +50,26 @@ const ColourButton = styled.button<ButtonType>`
 `;
 
 type LegButtonType = {
-  sendLegBetAction: (camel: Camels) => void;
+  isActive: boolean;
+  onClick: () => void;
+  onSubmit: (color: Camels) => void;
 };
 const LegBetButton = (props: LegButtonType) => {
-  const [isActive, setActive] = useState(false);
   const actionButton = (
     <ActionButton
-      onClick={() => setActive(!isActive)}
+      onClick={props.onClick}
       text={"Leg Bet"}
-      isActive={isActive}
+      isActive={props.isActive}
     ></ActionButton>
   );
-  const onColourClick = (color: Camels) => {
-    setActive(false);
-    props.sendLegBetAction(color);
-  };
   return (
     <LegButtonWrapper>
-      {isActive ? (
+      {props.isActive ? (
         <ColourPicker>
           <ColourPickerHeading>Choose a Camel</ColourPickerHeading>
           {Object.keys(Camels).map((color) => (
             <ColourButton
-              onClick={() => onColourClick(strToCamel(color))}
+              onClick={() => props.onSubmit(strToCamel(color))}
               backgroundColour={camelToPrimaryColour[strToCamel(color)]}
               hoverColour={camelToSecondaryColour[strToCamel(color)]} // UPDATE TO BE INTENSIFIED COLOUR
             />

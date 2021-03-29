@@ -34,6 +34,20 @@ export enum RaceBetTypes {
     Winner = 'winner',
     Loser  = 'loser'
 } 
+export const strToRaceBetType = (type: string): RaceBetTypes => {
+    switch (type.toLocaleLowerCase()){
+        case('winner'): 
+            return RaceBetTypes.Winner
+        case('loser'): 
+            return RaceBetTypes.Loser
+    }
+    throw `String Parameter is not a camel color: "${type}" (strToRaceBetType)`
+    
+}
+
+
+
+
 export enum Camels { 
     Blue ='blue',
     Red = 'red', 
