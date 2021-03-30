@@ -5,9 +5,10 @@ import {
   B070,
   camelToPrimaryColour,
   camelToSecondaryColour,
-  MCASH,
 } from "./colours";
 import { PlayerType } from "./types";
+import CashSymbol from "./CashSymbol";
+import LegBetCard from "./LegBetCard";
 
 const ActionSpace = styled.div`
   position: absolute;
@@ -25,25 +26,6 @@ const CashSpace = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-`;
-type CashSymbolProps = {
-  size: number;
-  fontSize: number;
-};
-const CashSymbol = styled.div<CashSymbolProps>`
-  padding: 10px;
-  margin: 10px;
-  display: inline-block;
-  background: ${MCASH};
-  border-radius: 50%;
-  width: ${(props) => props.size}px;
-  height: ${(props) => props.size}px;
-  left: 0px;
-  top: 0px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: ${(props) => props.fontSize}px;
 `;
 
 const BetSpace = styled.div`
@@ -68,39 +50,6 @@ const NoBetSpace = styled.div`
   align-items: center;
 `;
 
-const OuterSpace = styled.div`
-  background: ${(props) => props.color};
-  padding: 5px;
-  border-radius: 5px;
-  margin: 5px;
-  display: flex;
-  justifycontent: center;
-  align-items: center;
-`;
-const InnerSpace = styled.div`
-  background: ${(props) => props.color};
-  padding: 12px 0px 12px 0px;
-  border-radius: 5px;
-`;
-
-type BetCardProps = {
-  value: number;
-  primaryColor: string;
-  secondaryColor: string;
-};
-const BetCard = (props: BetCardProps) => {
-  console.log(props);
-  return (
-    <OuterSpace color={props.primaryColor}>
-      <InnerSpace color={props.secondaryColor}>
-        <CashSymbol size={20} fontSize={30}>
-          {props.value}
-        </CashSymbol>
-      </InnerSpace>
-    </OuterSpace>
-  );
-};
-
 const PlayerAssets = (props: PlayerType) => {
   console.log(">>>", !!props.legBets);
   return (
@@ -108,11 +57,7 @@ const PlayerAssets = (props: PlayerType) => {
       <BetSpace>
         {!!props.legBets.length ? (
           props.legBets.map((bet) => (
-            <BetCard
-              value={bet.value}
-              primaryColor={camelToPrimaryColour[bet.camel]}
-              secondaryColor={camelToSecondaryColour[bet.camel]}
-            />
+            <LegBetCard value={bet.value} camel={bet.camel} />
           ))
         ) : (
           <NoBetSpace>No Bets</NoBetSpace>

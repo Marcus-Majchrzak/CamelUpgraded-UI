@@ -7,6 +7,7 @@ import PlayerBar from "./PlayerBar";
 import { WebSocketProps, withWebSocket } from "./websocket";
 import PlayerAssets from "./PlayerAssets";
 import styled from "@emotion/styled";
+import LegBids from "./LegBids";
 
 const GameArea = styled.div`
   position: relative;
@@ -30,6 +31,9 @@ const TrackArea = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+const LegBetArea = styled.div`
+  top: 50%;
+`;
 
 const Game = (props: WebSocketProps) => {
   console.log(">>>! ", props);
@@ -37,6 +41,7 @@ const Game = (props: WebSocketProps) => {
   const camelPositions = props.data.boardState?.camelPositions;
   const diceRolled = props.data.boardState?.diceRolled;
   const players = props.data.players;
+  const legBids = props.data.boardState.legBids;
   const me = props.data?.players[props.id];
 
   return (
@@ -44,10 +49,15 @@ const Game = (props: WebSocketProps) => {
       <GameArea>
         <PlayerBar players={players} />
         {camelPositions ? (
-          <TrackArea>
-            <RaceTrack camelPositions={camelPositions} />
-            <DiceTrack diceRolled={diceRolled} />
-          </TrackArea>
+          <>
+            <LegBetArea>
+              <LegBids legBids={legBids} />
+            </LegBetArea>
+            <TrackArea>
+              <RaceTrack camelPositions={camelPositions} />
+              <DiceTrack diceRolled={diceRolled} />
+            </TrackArea>
+          </>
         ) : (
           "loading"
         )}

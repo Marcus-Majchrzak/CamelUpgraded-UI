@@ -3,7 +3,6 @@
 export type RequestDataType = {
     players: Record<string, PlayerType>
     boardState: BoardStateType
-
 }
 export type PlayerType = {
     name: string,
