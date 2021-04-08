@@ -11,9 +11,8 @@ import LegBetCard from "./LegBetCard";
 
 const LegBetSpace = styled.div`
   position: absolute;
-  left: -135px;
-  top: 190px;
-  background: ${B005};
+  left: -160px;
+  top: -67px;
   display: flex;
   flexdirection: row;
   padding: 10px;
@@ -23,15 +22,6 @@ const LegBetSpace = styled.div`
   -o-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
   transform: rotate(90deg);
-`;
-const EmptyBetPlace = styled.div`
-  background: ${(props) => props.color};
-  padding: 5px;
-  border-radius: 5px;
-  margin: 5px;
-  display: flex;
-  justifycontent: center;
-  align-items: center;
 `;
 type LegBidProps = {
   legBids: Record<Camels, Array<number>>;
@@ -44,11 +34,7 @@ const LegBids = (props: LegBidProps) => {
         const camel = strToCamel(key);
         const value = props.legBids[camel].slice(-1)[0];
         console.log(props);
-        return !!value ? (
-          <LegBetCard value={value} camel={camel} />
-        ) : (
-          <EmptyBetPlace />
-        );
+        return <LegBetCard value={value || 0} camel={camel} />;
       })}
     </LegBetSpace>
   );

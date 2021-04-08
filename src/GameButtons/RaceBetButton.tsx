@@ -8,6 +8,8 @@ import {
   B070,
   camelToPrimaryColour,
   camelToSecondaryColour,
+  S200,
+  S300,
 } from "../colours";
 import { Camels, RaceBetTypes, strToCamel, strToRaceBetType } from "../types";
 import ActionButton from "./ActionButton";
@@ -84,8 +86,8 @@ const RaceBetButton = (props: RaceBetButtonType) => {
                     strToRaceBetType(type)
                   )
                 }
-                backgroundColour={B015}
-                hoverColour={B032}
+                backgroundColour={S200}
+                hoverColour={S300}
               >
                 {type}
               </ColourButton>

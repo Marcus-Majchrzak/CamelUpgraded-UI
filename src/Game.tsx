@@ -32,6 +32,7 @@ const TrackArea = styled.div`
   align-items: center;
 `;
 const LegBetArea = styled.div`
+  position: fixed;
   top: 50%;
 `;
 
@@ -42,7 +43,7 @@ const Game = (props: WebSocketProps) => {
   const diceRolled = props.data.boardState?.diceRolled;
   const players = props.data.players;
   const legBids = props.data.boardState.legBids;
-  const me = props.data?.players[props.id];
+  const me = props.data?.me;
 
   return (
     data && (

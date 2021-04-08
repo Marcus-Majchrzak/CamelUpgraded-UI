@@ -24,11 +24,13 @@ export const P50  = '#fff3e0';
 
 //Secondary Colour Range
 export const S200 = '#bae2ff';
+export const S300 = '#46BDFF'
 
 
 
 //Misc colours
 export const MCASH = '#FFD54F'
+export const TRANS = 'rgba(255, 255, 255, 0.00)'
 
 
 //Camel Colours
