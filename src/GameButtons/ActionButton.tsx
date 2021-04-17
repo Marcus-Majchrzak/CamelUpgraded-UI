@@ -4,6 +4,7 @@ import { P200, P300, P400, P500 } from "../colours";
 
 type StyledButtonType = {
   isActive: boolean;
+  isDisabled: boolean;
 };
 const StyledButton = styled.button<StyledButtonType>`
   width: 150px;
@@ -12,6 +13,7 @@ const StyledButton = styled.button<StyledButtonType>`
   border-radius: 5px;
   margin: ${(props) => (props.isActive ? "5px;" : "10px 5px 10px 5px")};
   font-size: 20px;
+  opacity: ${(props) => (props.isDisabled ? "60%" : "100%")};
   :hover {
     background-color: ${(props) => (props.isActive ? P500 : P300)};
   }
@@ -21,10 +23,15 @@ type ActionButtonType = {
   onClick: () => void;
   text: String;
   isActive?: boolean;
+  isDisabled?: boolean;
 };
 const ActionButton = (props: ActionButtonType): ReactElement => {
   return (
-    <StyledButton onClick={props.onClick} isActive={props.isActive || false}>
+    <StyledButton
+      onClick={() => props.isDisabled || props.onClick()}
+      isActive={props.isActive || false}
+      isDisabled={props.isDisabled || false}
+    >
       {props.text}
     </StyledButton>
   );

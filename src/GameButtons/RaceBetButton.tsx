@@ -56,6 +56,7 @@ type RaceBetButtonType = {
   isActive: boolean;
   onClick: () => void;
   onSubmit: (color: Camels, type: RaceBetTypes) => void;
+  isDisabled: boolean;
 };
 const RaceBetButton = (props: RaceBetButtonType) => {
   const [hasSelected, setSelected] = useState(false);
@@ -65,6 +66,7 @@ const RaceBetButton = (props: RaceBetButtonType) => {
       onClick={props.onClick}
       text={"Race Bet"}
       isActive={props.isActive}
+      isDisabled={props.isDisabled}
     ></ActionButton>
   );
 

@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { B005 } from "../colours";
 import { Camels, RaceBetTypes, TileType } from "../types";
 import ActionButton from "./ActionButton";
-import { WebSocketProps } from "../websocket";
+import { ActionFunctionsType } from "../websocket";
 import LegBetButton from "./LegBetButton";
 import RaceBetButton from "./RaceBetButton";
 import { useState } from "react";
@@ -27,44 +27,59 @@ enum ActiveState {
   None,
 }
 
-const GameButtons = (props: WebSocketProps) => {
+type GameButtonType = {
+  actionFunctions: ActionFunctionsType;
+  isDisabled: boolean;
+};
+
+const GameButtons = (props: GameButtonType) => {
+  const { actionFunctions, isDisabled } = props;
   const [activeButton, setActiveButton] = useState(ActiveState.None);
+
   const onClick = (button: ActiveState) => {
     const newState = activeButton === button ? ActiveState.None : button;
     setActiveButton(newState);
   };
   const onMoveButtonSubmit = () => {
-    props.sendMoveAction();
+    actionFunctions.sendMoveAction();
     setActiveButton(ActiveState.None);
   };
   const onLegButtonSubmit = (color: Camels) => {
-    props.sendLegBetAction(color);
+    actionFunctions.sendLegBetAction(color);
     setActiveButton(ActiveState.None);
   };
   const onRaceBetSubmit = (color: Camels, type: RaceBetTypes) => {
-    props.sendRaceBetAction(color, type);
+    actionFunctions.sendRaceBetAction(color, type);
     setActiveButton(ActiveState.None);
   };
   const onPlaceTileSubmit = (tile: number, type: TileType) => {
-    props.sendTileAction(tile, type);
+    actionFunctions.sendTileAction(tile, type);
     setActiveButton(ActiveState.None);
   };
 
   return (
     <ActionSpace>
-      <ActionButton onClick={onMoveButtonSubmit} text={"Move"} />
+      <ActionButton
+        onClick={onMoveButtonSubmit}
+        text={"Move"}
+        isDisabled={isDisabled}
+      />
       <LegBetButton
         isActive={activeButton === ActiveState.LegButton}
+        isDisabled={isDisabled}
         onSubmit={onLegButtonSubmit}
         onClick={() => onClick(ActiveState.LegButton)}
       />
       <RaceBetButton
         isActive={activeButton === ActiveState.RaceBet}
+        isDisabled={isDisabled}
         onSubmit={onRaceBetSubmit}
         onClick={() => onClick(ActiveState.RaceBet)}
       />
       <ActionButton
-        onClick={() => props.sendTileAction(10, TileType.Oasis)}
+        //onSubmit={onPlaceTileSubmit}
+        onClick={() => onClick(ActiveState.PlaceTile)}
+        isDisabled={isDisabled}
         text={"Place Tile"}
       />
     </ActionSpace>

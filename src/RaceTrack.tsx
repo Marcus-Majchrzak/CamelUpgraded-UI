@@ -22,7 +22,7 @@ const RaceTrackSpace = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-end;
-  height: 100px;
+  min-height: 100px;
 `;
 const Position = styled.div`
   display: flex;

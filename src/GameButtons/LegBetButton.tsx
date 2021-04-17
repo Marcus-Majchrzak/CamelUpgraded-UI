@@ -51,6 +51,7 @@ const ColourButton = styled.button<ButtonType>`
 
 type LegButtonType = {
   isActive: boolean;
+  isDisabled: boolean;
   onClick: () => void;
   onSubmit: (color: Camels) => void;
 };
@@ -60,6 +61,7 @@ const LegBetButton = (props: LegButtonType) => {
       onClick={props.onClick}
       text={"Leg Bet"}
       isActive={props.isActive}
+      isDisabled={props.isDisabled}
     ></ActionButton>
   );
   return (

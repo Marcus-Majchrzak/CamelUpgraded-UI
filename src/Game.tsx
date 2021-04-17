@@ -6,6 +6,7 @@ import DiceTrack from "./DiceTrack";
 import PlayerBar from "./PlayerBar";
 import { WebSocketProps, withWebSocket } from "./websocket";
 import PlayerAssets from "./PlayerAssets";
+import Announcer from "./Announcer";
 import styled from "@emotion/styled";
 import LegBids from "./LegBids";
 
@@ -25,7 +26,7 @@ const TrackArea = styled.div`
   height: 200px;
   top: 50%;
   left: 50%;
-  margin-top: -100px;
+  margin-top: -175px;
   margin-left: -420px;
   display: flex;
   flex-direction: column;
@@ -38,34 +39,39 @@ const LegBetArea = styled.div`
 
 const Game = (props: WebSocketProps) => {
   console.log(">>>! ", props);
-  const data = props.data;
-  const camelPositions = props.data.boardState?.camelPositions;
-  const diceRolled = props.data.boardState?.diceRolled;
-  const players = props.data.players;
-  const legBids = props.data.boardState.legBids;
-  const me = props.data?.me;
-
+  if (!props.data) {
+    return <>Loading</>;
+  }
+  const { boardState, players, playerTurn, me } = props.data;
+  const isMyTurn = me === playerTurn;
+  console.log(isMyTurn, me, playerTurn);
   return (
-    data && (
-      <GameArea>
-        <PlayerBar players={players} />
-        {camelPositions ? (
-          <>
-            <LegBetArea>
-              <LegBids legBids={legBids} />
-            </LegBetArea>
-            <TrackArea>
-              <RaceTrack camelPositions={camelPositions} />
-              <DiceTrack diceRolled={diceRolled} />
-            </TrackArea>
-          </>
-        ) : (
-          "loading"
-        )}
-        <GameButtons {...props} />
-        <PlayerAssets {...me} />
-      </GameArea>
-    )
+    <GameArea>
+      <PlayerBar players={players} playerTurn={playerTurn} />
+      {boardState ? (
+        <>
+          <LegBetArea>
+            <LegBids legBids={boardState.legBids} />
+          </LegBetArea>
+          <TrackArea>
+            <Announcer
+              players={players}
+              playerTurn={playerTurn}
+              isMyTurn={isMyTurn}
+            />
+            <RaceTrack camelPositions={boardState.camelPositions} />
+            <DiceTrack diceRolled={boardState.diceRolled} />
+          </TrackArea>
+        </>
+      ) : (
+        "Loading"
+      )}
+      <GameButtons
+        actionFunctions={props.actionFunctions}
+        isDisabled={!isMyTurn}
+      />
+      <PlayerAssets {...players[me]} />
+    </GameArea>
   );
 };
 

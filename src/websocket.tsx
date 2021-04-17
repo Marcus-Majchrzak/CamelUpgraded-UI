@@ -2,13 +2,17 @@ import React, { useState, useCallback, useRef } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import { Camels, RaceBetTypes, RequestDataType, TileType } from "./types";
 
-export interface WebSocketProps {
-  id: string;
-  data: RequestDataType;
+export type ActionFunctionsType = {
   sendMoveAction: () => void;
   sendLegBetAction: (camel: Camels) => void;
   sendRaceBetAction: (camel: Camels, betType: RaceBetTypes) => void;
   sendTileAction: (square: Number, tileType: TileType) => void;
+};
+
+export interface WebSocketProps {
+  id: string;
+  data: RequestDataType;
+  actionFunctions: ActionFunctionsType;
 }
 
 export const withWebSocket = <P extends object>(
@@ -63,10 +67,12 @@ export const withWebSocket = <P extends object>(
     const webSocket = {
       id: id.current,
       data: response.data,
-      sendMoveAction,
-      sendLegBetAction,
-      sendRaceBetAction,
-      sendTileAction,
+      actionFunctions: {
+        sendMoveAction,
+        sendLegBetAction,
+        sendRaceBetAction,
+        sendTileAction,
+      },
     };
 
     const gameStarted = (): Boolean => {

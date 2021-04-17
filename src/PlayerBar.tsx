@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { B032, S200 } from "./colours";
+import { B032, S200, S300 } from "./colours";
 import { PlayerType } from "./types";
 
 const PlayerBarSpace = styled.div`
@@ -10,11 +10,11 @@ const PlayerBarSpace = styled.div`
   display: flex;
   flex-direction: row;
 `;
-const PlayerCard = styled.div`
+const PlayerCard = styled.div<PlayerCardType>`
   width: 90px;
   height: 20px;
   margin-right: 5px;
-  background: ${S200};
+  background: ${(props) => (props.isActive ? S300 : S200)};
   border-radius: 0px 0px 10px 10px;
 `;
 const PlayerSpace = styled.div`
@@ -25,15 +25,20 @@ const PlayerSpace = styled.div`
   align-items: center;
   color: ${B032};
 `;
+type PlayerCardType = {
+  isActive: Boolean;
+};
 type PlayerBarType = {
-  players: Record<string, PlayerType>;
+  players: Array<PlayerType>;
+  playerTurn: number;
 };
 const PlayerBar = (props: PlayerBarType) => {
+  const { playerTurn, players } = props;
   return (
     <PlayerBarSpace>
-      {Object.entries(props.players).map((player) => (
+      {Object.entries(players).map((player, i) => (
         <PlayerSpace>
-          <PlayerCard />
+          <PlayerCard isActive={playerTurn === i} />
           <div>{player[1].name}</div>
         </PlayerSpace>
       ))}

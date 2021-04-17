@@ -1,8 +1,9 @@
 
 
 export type RequestDataType = {
-    me: PlayerType
-    players: Record<string, PlayerType>
+    players: Array<PlayerType>
+    me: number
+    playerTurn: number
     boardState: BoardStateType
 }
 export type PlayerType = {
