@@ -6,7 +6,7 @@ export type ActionFunctionsType = {
   sendMoveAction: () => void;
   sendLegBetAction: (camel: Camels) => void;
   sendRaceBetAction: (camel: Camels, betType: RaceBetTypes) => void;
-  sendTileAction: (square: Number, tileType: TileType) => void;
+  sendTileAction: (square: number, tileType: TileType) => void;
 };
 
 export interface WebSocketProps {

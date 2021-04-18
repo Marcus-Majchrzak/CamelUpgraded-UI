@@ -5,6 +5,7 @@ import { Camels, RaceBetTypes, TileType } from "../types";
 import ActionButton from "./ActionButton";
 import { ActionFunctionsType } from "../websocket";
 import LegBetButton from "./LegBetButton";
+import PlaceTileButton from "./PlaceTileButton";
 import RaceBetButton from "./RaceBetButton";
 import { useState } from "react";
 
@@ -52,8 +53,8 @@ const GameButtons = (props: GameButtonType) => {
     actionFunctions.sendRaceBetAction(color, type);
     setActiveButton(ActiveState.None);
   };
-  const onPlaceTileSubmit = (tile: number, type: TileType) => {
-    actionFunctions.sendTileAction(tile, type);
+  const onPlaceTileSubmit = (square: number, type: TileType) => {
+    actionFunctions.sendTileAction(square, type);
     setActiveButton(ActiveState.None);
   };
 
@@ -76,11 +77,11 @@ const GameButtons = (props: GameButtonType) => {
         onSubmit={onRaceBetSubmit}
         onClick={() => onClick(ActiveState.RaceBet)}
       />
-      <ActionButton
-        //onSubmit={onPlaceTileSubmit}
+      <PlaceTileButton
+        isActive={activeButton === ActiveState.PlaceTile}
+        onSubmit={onPlaceTileSubmit}
         onClick={() => onClick(ActiveState.PlaceTile)}
         isDisabled={isDisabled}
-        text={"Place Tile"}
       />
     </ActionSpace>
   );

@@ -2,9 +2,6 @@
 import styled from "@emotion/styled";
 import { useRef, useState } from "react";
 import {
-  B005,
-  B015,
-  B032,
   B070,
   camelToPrimaryColour,
   camelToSecondaryColour,

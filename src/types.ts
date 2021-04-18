@@ -9,7 +9,7 @@ export type RequestDataType = {
 export type PlayerType = {
     name: string,
     money: number,
-    legBets: Array<LegBedType>
+    legBets: Array<LegBetType>
 }
 export type BoardStateType = {
     camelPositions: Array<Array<Camels>>
@@ -20,15 +20,25 @@ export type DiceRollType = {
     color: Camels
     value: number
 }
-export type LegBedType = {
+export type LegBetType = {
     value: number,
     camel: Camels,
 }
 
 
 export enum TileType {
-    Oasis = 'oasis',
-    Desert = 'desert'
+    Oasis = "Oasis",
+    Desert = "Desert"
+}
+export const strToTileType = (type: string): TileType => {
+    switch (type.toLocaleLowerCase()){
+        case('oasis'): 
+            return TileType.Oasis
+        case('desert'): 
+            return TileType.Desert
+    }
+    throw `String Parameter is not a tile type: "${type}" (strToTileType)`
+    
 }
 
 export enum RaceBetTypes {
