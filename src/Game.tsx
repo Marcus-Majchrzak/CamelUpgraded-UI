@@ -9,6 +9,7 @@ import PlayerAssets from "./PlayerAssets";
 import Announcer from "./Announcer";
 import styled from "@emotion/styled";
 import LegBids from "./LegBids";
+import { createContext, useState } from "react";
 
 const GameArea = styled.div`
   position: relative;
@@ -38,6 +39,8 @@ const LegBetArea = styled.div`
 `;
 
 const Game = (props: WebSocketProps) => {
+  const [isTileActivated, setTileActivated] = useState(false);
+  const [selectedTile, setSelectedTile] = useState(-1);
   console.log(">>>! ", props);
   if (!props.data) {
     return <>Loading</>;
@@ -45,6 +48,11 @@ const Game = (props: WebSocketProps) => {
   const { boardState, players, playerTurn, me } = props.data;
   const isMyTurn = me === playerTurn;
   console.log(isMyTurn, me, playerTurn);
+
+  const selectTile = (tile: number) => {
+    setSelectedTile(tile);
+  };
+
   return (
     <GameArea>
       <PlayerBar players={players} playerTurn={playerTurn} />
@@ -59,7 +67,11 @@ const Game = (props: WebSocketProps) => {
               playerTurn={playerTurn}
               isMyTurn={isMyTurn}
             />
-            <RaceTrack camelPositions={boardState.camelPositions} />
+            <RaceTrack
+              camelPositions={boardState.camelPositions}
+              isTileActivated={isTileActivated}
+              selectTile={selectTile}
+            />
             <DiceTrack diceRolled={boardState.diceRolled} />
           </TrackArea>
         </>
@@ -69,6 +81,9 @@ const Game = (props: WebSocketProps) => {
       <GameButtons
         actionFunctions={props.actionFunctions}
         isDisabled={!isMyTurn}
+        selectedTile={selectedTile}
+        setSelectedTile={setSelectedTile}
+        setTileActivated={setTileActivated}
       />
       <PlayerAssets {...players[me]} />
     </GameArea>

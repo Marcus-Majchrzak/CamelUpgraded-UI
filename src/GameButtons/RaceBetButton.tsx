@@ -71,6 +71,11 @@ const RaceBetButton = (props: RaceBetButtonType) => {
     setSelected(false);
     props.onSubmit(color, type);
   };
+
+  if (!props.isActive && hasSelected) {
+    setSelected(false);
+  }
+
   return (
     <RaceBetButtonWrapper>
       {props.isActive ? (

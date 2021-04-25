@@ -28,14 +28,14 @@ export type LegBetType = {
 
 export enum TileType {
     Oasis = "Oasis",
-    Desert = "Desert"
+    Mirage = "Mirage"
 }
 export const strToTileType = (type: string): TileType => {
     switch (type.toLocaleLowerCase()){
         case('oasis'): 
             return TileType.Oasis
-        case('desert'): 
-            return TileType.Desert
+        case('mirage'): 
+            return TileType.Mirage
     }
     throw `String Parameter is not a tile type: "${type}" (strToTileType)`
     

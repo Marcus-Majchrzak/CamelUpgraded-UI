@@ -31,10 +31,19 @@ enum ActiveState {
 type GameButtonType = {
   actionFunctions: ActionFunctionsType;
   isDisabled: boolean;
+  selectedTile: number;
+  setSelectedTile: (tile: number) => void;
+  setTileActivated: (isActive: boolean) => void;
 };
 
 const GameButtons = (props: GameButtonType) => {
-  const { actionFunctions, isDisabled } = props;
+  const {
+    setTileActivated,
+    actionFunctions,
+    isDisabled,
+    setSelectedTile,
+    selectedTile,
+  } = props;
   const [activeButton, setActiveButton] = useState(ActiveState.None);
 
   const onClick = (button: ActiveState) => {
@@ -55,6 +64,8 @@ const GameButtons = (props: GameButtonType) => {
   };
   const onPlaceTileSubmit = (square: number, type: TileType) => {
     actionFunctions.sendTileAction(square, type);
+    setSelectedTile(-1);
+    setTileActivated(false);
     setActiveButton(ActiveState.None);
   };
 
@@ -82,6 +93,8 @@ const GameButtons = (props: GameButtonType) => {
         onSubmit={onPlaceTileSubmit}
         onClick={() => onClick(ActiveState.PlaceTile)}
         isDisabled={isDisabled}
+        selectedTile={selectedTile}
+        setTileActivated={setTileActivated}
       />
     </ActionSpace>
   );
