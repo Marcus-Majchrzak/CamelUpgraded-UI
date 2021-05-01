@@ -9,7 +9,7 @@ import PlayerAssets from "./PlayerAssets";
 import Announcer from "./Announcer";
 import styled from "@emotion/styled";
 import LegBids from "./LegBids";
-import { createContext, useState } from "react";
+import { useState } from "react";
 
 const GameArea = styled.div`
   position: relative;
@@ -69,6 +69,7 @@ const Game = (props: WebSocketProps) => {
             />
             <RaceTrack
               camelPositions={boardState.camelPositions}
+              placedTiles={boardState.placedTiles}
               isTileActivated={isTileActivated}
               selectTile={selectTile}
             />

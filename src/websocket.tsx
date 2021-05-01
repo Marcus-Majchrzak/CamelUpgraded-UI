@@ -1,12 +1,18 @@
 import React, { useState, useCallback, useRef } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
-import { Camels, RaceBetTypes, RequestDataType, TileType } from "./types";
+import {
+  Camels,
+  RaceBetTypes,
+  RequestDataType,
+  TileEffectType,
+  TileType,
+} from "./types";
 
 export type ActionFunctionsType = {
   sendMoveAction: () => void;
   sendLegBetAction: (camel: Camels) => void;
   sendRaceBetAction: (camel: Camels, betType: RaceBetTypes) => void;
-  sendTileAction: (square: number, tileType: TileType) => void;
+  sendTileAction: (square: number, tileType: TileEffectType) => void;
 };
 
 export interface WebSocketProps {

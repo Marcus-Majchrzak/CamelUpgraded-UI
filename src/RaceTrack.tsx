@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { camelToPrimaryColour, P200, P50 } from "./colours";
-import { Camels } from "./types";
+import { Camels, TileType, TileEffectType } from "./types";
 
 const Camel = styled.div`
   background: ${(props) => props.color};
@@ -38,19 +38,24 @@ type SquareType = {
 };
 type RaceTrackType = {
   camelPositions: Array<Array<Camels>>;
+  placedTiles: Record<number, TileType>;
   isTileActivated: boolean;
   selectTile: (space: number) => void;
 };
 const RaceTrack = (props: RaceTrackType) => {
-  console.log(">!!", props);
+  const { camelPositions, placedTiles, isTileActivated, selectTile } = props;
   const onSquareClick = (space: number) => {
-    if (props.isTileActivated) {
-      props.selectTile(space);
+    if (isTileActivated) {
+      selectTile(space);
     }
+  };
+  const tileEffectToEmoji: Record<TileEffectType, String> = {
+    [TileEffectType.Oasis]: "🏝️",
+    [TileEffectType.Mirage]: "🏜️",
   };
   return (
     <RaceTrackSpace>
-      {props.camelPositions.map((square, space) => (
+      {camelPositions.map((square, space) => (
         <Position key={space}>
           {square
             .slice()
@@ -58,9 +63,11 @@ const RaceTrack = (props: RaceTrackType) => {
             .map((camel, index) => (
               <Camel color={camelToPrimaryColour[camel]} key={index} />
             ))}
+          {placedTiles.hasOwnProperty(space) &&
+            tileEffectToEmoji[placedTiles[space].effect]}
           <Square
             onClick={() => onSquareClick(space)}
-            isTileActivated={props.isTileActivated}
+            isTileActivated={isTileActivated}
           />
         </Position>
       ))}

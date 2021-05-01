@@ -1,5 +1,3 @@
-
-
 export type RequestDataType = {
     players: Array<PlayerType>
     me: number
@@ -15,6 +13,11 @@ export type BoardStateType = {
     camelPositions: Array<Array<Camels>>
     legBids: Record<Camels, Array<number>>
     diceRolled: Array<DiceRollType>
+    placedTiles: Record<number,TileType>
+}
+export type TileType = {
+    playerId: number
+    effect: TileEffectType
 }
 export type DiceRollType = {
     color: Camels
@@ -26,19 +29,18 @@ export type LegBetType = {
 }
 
 
-export enum TileType {
-    Oasis = "Oasis",
-    Mirage = "Mirage"
+export enum TileEffectType {
+    Oasis = "OASIS",
+    Mirage = "MIRAGE"
 }
-export const strToTileType = (type: string): TileType => {
+export const strToTileEffectType = (type: string): TileEffectType => {
     switch (type.toLocaleLowerCase()){
         case('oasis'): 
-            return TileType.Oasis
+            return TileEffectType.Oasis
         case('mirage'): 
-            return TileType.Mirage
+            return TileEffectType.Mirage
     }
     throw `String Parameter is not a tile type: "${type}" (strToTileType)`
-    
 }
 
 export enum RaceBetTypes {
@@ -55,9 +57,6 @@ export const strToRaceBetType = (type: string): RaceBetTypes => {
     throw `String Parameter is not a camel color: "${type}" (strToRaceBetType)`
     
 }
-
-
-
 
 export enum Camels { 
     Blue ='blue',

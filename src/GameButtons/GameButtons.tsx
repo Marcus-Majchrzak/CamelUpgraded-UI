@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { B005 } from "../colours";
-import { Camels, RaceBetTypes, TileType } from "../types";
+import { Camels, RaceBetTypes, TileEffectType, TileType } from "../types";
 import ActionButton from "./ActionButton";
 import { ActionFunctionsType } from "../websocket";
 import LegBetButton from "./LegBetButton";
@@ -62,7 +62,7 @@ const GameButtons = (props: GameButtonType) => {
     actionFunctions.sendRaceBetAction(color, type);
     setActiveButton(ActiveState.None);
   };
-  const onPlaceTileSubmit = (square: number, type: TileType) => {
+  const onPlaceTileSubmit = (square: number, type: TileEffectType) => {
     actionFunctions.sendTileAction(square, type);
     setSelectedTile(-1);
     setTileActivated(false);
