@@ -1,12 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import {
-  B005,
-  B070,
-  camelToPrimaryColour,
-  camelToSecondaryColour,
-} from "./colours";
-import { Camels, LegBetType, PlayerType, strToCamel } from "./types";
+import { Camels, LegBetType, strToCamel } from "./types";
 import LegBetCard from "./LegBetCard";
 
 const LegBetSpace = styled.div`

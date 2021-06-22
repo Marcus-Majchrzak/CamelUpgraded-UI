@@ -2,7 +2,7 @@
 import styled from "@emotion/styled";
 import { useRef, useState } from "react";
 import { B070, S200, S300 } from "../colours";
-import { strToTileEffectType, TileEffectType, TileType } from "../types";
+import { strToTileEffectType, TileEffectType } from "../types";
 import ActionButton from "./ActionButton";
 
 const LegButtonWrapper = styled.div`
@@ -77,7 +77,7 @@ const PlaceTileButton = (props: LegButtonType) => {
   if (!props.isActive && hasSelected) {
     setSelected(false);
   }
-  if (props.selectedTile != -1) {
+  if (props.selectedTile !== -1) {
     props.onSubmit(props.selectedTile, strToTileEffectType(storedType.current));
   }
 

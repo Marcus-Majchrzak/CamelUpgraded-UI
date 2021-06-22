@@ -1,11 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import {
-  B005,
-  B070,
-  camelToPrimaryColour,
-  camelToSecondaryColour,
-} from "./colours";
+import { B005, B070 } from "./colours";
 import { PlayerType } from "./types";
 import CashSymbol from "./CashSymbol";
 import LegBetCard from "./LegBetCard";

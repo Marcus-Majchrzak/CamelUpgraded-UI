@@ -1,13 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
-import { useState } from "react";
-import {
-  B005,
-  B032,
-  B070,
-  camelToPrimaryColour,
-  camelToSecondaryColour,
-} from "../colours";
+import { B070, camelToPrimaryColour, camelToSecondaryColour } from "../colours";
 import { Camels, strToCamel } from "../types";
 import ActionButton from "./ActionButton";
 

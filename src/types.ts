@@ -39,8 +39,9 @@ export const strToTileEffectType = (type: string): TileEffectType => {
             return TileEffectType.Oasis
         case('mirage'): 
             return TileEffectType.Mirage
+        default:
+            throw new Error(`String Parameter is not a tile type: "${type}" (strToTileType)`)
     }
-    throw `String Parameter is not a tile type: "${type}" (strToTileType)`
 }
 
 export enum RaceBetTypes {
@@ -53,9 +54,9 @@ export const strToRaceBetType = (type: string): RaceBetTypes => {
             return RaceBetTypes.Winner
         case('loser'): 
             return RaceBetTypes.Loser
+        default:
+            throw new Error(`String Parameter is not a camel color: "${type}" (strToRaceBetType)`)
     }
-    throw `String Parameter is not a camel color: "${type}" (strToRaceBetType)`
-    
 }
 
 export enum Camels { 
@@ -77,7 +78,7 @@ export const strToCamel = (camel: string): Camels => {
             return Camels.Orange
         case('white'): 
             return Camels.White
+        default:
+            throw new Error(`String Parameter is not a camel color: "${camel}" (strToCamel)`)
     }
-    throw `String Parameter is not a camel color: "${camel}" (strToCamel)`
-    
 }

@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import styled from "@emotion/styled";
 import { B005 } from "../colours";
-import { Camels, RaceBetTypes, TileEffectType, TileType } from "../types";
+import { Camels, RaceBetTypes, TileEffectType } from "../types";
 import ActionButton from "./ActionButton";
 import { ActionFunctionsType } from "../websocket";
 import LegBetButton from "./LegBetButton";

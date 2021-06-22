@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from "react";
+import React, { useState, useRef } from "react";
 import useWebSocket, { ReadyState } from "react-use-websocket";
 import {
   Camels,
@@ -25,19 +25,11 @@ export const withWebSocket = <P extends object>(
   WrappedComponent: React.ComponentType<P>
 ): React.FC<Omit<P, keyof WebSocketProps>> => {
   return function Websocket(props) {
-    const [socketUrl, setSocketUrl] = useState(
-      "ws://localhost:8080/ws/camelupgraded"
-    ); //TODO: Make dynamic url
+    const [socketUrl] = useState("ws://localhost:8080/ws/camelupgraded"); //TODO: Make dynamic url
     const id = useRef("NOT-SET");
 
-    const { sendJsonMessage, lastMessage, readyState } = useWebSocket(
-      socketUrl
-    );
-
-    const handleClickSendMessage = useCallback(
-      () => sendJsonMessage("Hello"),
-      []
-    );
+    const { sendJsonMessage, lastMessage, readyState } =
+      useWebSocket(socketUrl);
 
     const sendMoveAction = () => {
       sendJsonMessage({
