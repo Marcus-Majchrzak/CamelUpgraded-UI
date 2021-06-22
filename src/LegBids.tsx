@@ -6,7 +6,7 @@ import {
   camelToPrimaryColour,
   camelToSecondaryColour,
 } from "./colours";
-import { Camels, PlayerType, strToCamel } from "./types";
+import { Camels, LegBetType, PlayerType, strToCamel } from "./types";
 import LegBetCard from "./LegBetCard";
 
 const LegBetSpace = styled.div`
@@ -24,7 +24,7 @@ const LegBetSpace = styled.div`
   transform: rotate(90deg);
 `;
 type LegBidProps = {
-  legBids: Record<Camels, Array<number>>;
+  legBids: Record<Camels, Array<LegBetType>>;
 };
 
 const LegBids = (props: LegBidProps) => {
@@ -32,8 +32,8 @@ const LegBids = (props: LegBidProps) => {
     <LegBetSpace>
       {Object.keys(props.legBids).map((key) => {
         const camel = strToCamel(key);
-        const value = props.legBids[camel].slice(-1)[0];
-        console.log(props);
+        const value = props.legBids[camel].slice(-1)[0].value;
+        console.log(">>>", value);
         return <LegBetCard value={value || 0} camel={camel} />;
       })}
     </LegBetSpace>

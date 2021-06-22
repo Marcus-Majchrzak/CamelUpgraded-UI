@@ -37,9 +37,9 @@ const DiceTrack = (props: DiceTrackType) => {
   return (
     <DiceTrackSpace>
       {props.diceRolled.map((die) => (
-        <OuterSpace color={camelToPrimaryColour[die.color]}>
-          <InnerSpace color={camelToSecondaryColour[die.color]}>
-            {die.value}
+        <OuterSpace color={camelToPrimaryColour[die.camel]}>
+          <InnerSpace color={camelToSecondaryColour[die.camel]}>
+            {die.move}
           </InnerSpace>
         </OuterSpace>
       ))}

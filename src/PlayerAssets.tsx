@@ -55,8 +55,8 @@ const PlayerAssets = (props: PlayerType) => {
   return (
     <ActionSpace>
       <BetSpace>
-        {!!props.legBets.length ? (
-          props.legBets.map((bet) => (
+        {props.legBets.length !== 0 ? (
+          Object.values(props.legBets).map((bet) => (
             <LegBetCard value={bet.value} camel={bet.camel} />
           ))
         ) : (

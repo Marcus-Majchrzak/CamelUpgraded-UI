@@ -6,6 +6,8 @@ CXY = Colour for camel X, type Y
 MX  = Misc of type X
 */
 
+import { Camels } from "./types";
+
 //Shades
 export const White = '#ffffff';
 export const B004  = '#121212';
@@ -50,16 +52,16 @@ export const CW1 = "#F5F5F5"
 export const CW2 = "#E0E0E0"
 
 export const camelToPrimaryColour = {
-    blue: CB1,
-    red: CR1,
-    green: CG1,
-    orange: CO1,
-    white: CW1,
+    [Camels.Blue]: CB1,
+    [Camels.Red]: CR1,
+    [Camels.Green]: CG1,
+    [Camels.Orange]: CO1,
+    [Camels.White]: CW1,
   };
   export const camelToSecondaryColour = {
-    blue: CB2,
-    red: CR2,
-    green: CG2,
-    orange: CO2,
-    white: CW2,
+    [Camels.Blue]: CB2,
+    [Camels.Red]: CR2,
+    [Camels.Green]: CG2,
+    [Camels.Orange]: CO2,
+    [Camels.White]: CW2,
   };

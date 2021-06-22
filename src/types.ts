@@ -11,7 +11,7 @@ export type PlayerType = {
 }
 export type BoardStateType = {
     camelPositions: Array<Array<Camels>>
-    legBids: Record<Camels, Array<number>>
+    legBids: Record<Camels, Array<LegBetType>>
     diceRolled: Array<DiceRollType>
     placedTiles: Record<number,TileType>
 }
@@ -20,8 +20,8 @@ export type TileType = {
     effect: TileEffectType
 }
 export type DiceRollType = {
-    color: Camels
-    value: number
+    camel: Camels
+    move: number
 }
 export type LegBetType = {
     value: number,
@@ -59,11 +59,11 @@ export const strToRaceBetType = (type: string): RaceBetTypes => {
 }
 
 export enum Camels { 
-    Blue ='blue',
-    Red = 'red', 
-    Green = 'green', 
-    Orange = 'orange', 
-    White = 'white'
+    Blue ='BLUE',
+    Red = 'RED', 
+    Green = 'GREEN', 
+    Orange = 'ORANGE', 
+    White = 'WHITE'
 }
 export const strToCamel = (camel: string): Camels => {
     switch (camel.toLocaleLowerCase()){
