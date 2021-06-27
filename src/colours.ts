@@ -52,16 +52,16 @@ export const CW1 = "#F5F5F5"
 export const CW2 = "#E0E0E0"
 
 export const camelToPrimaryColour = {
-    [Camels.Blue]: CB1,
-    [Camels.Red]: CR1,
-    [Camels.Green]: CG1,
-    [Camels.Orange]: CO1,
-    [Camels.White]: CW1,
+    [Camels.BLUE]: CB1,
+    [Camels.RED]: CR1,
+    [Camels.GREEN]: CG1,
+    [Camels.ORANGE]: CO1,
+    [Camels.WHITE]: CW1,
   };
   export const camelToSecondaryColour = {
-    [Camels.Blue]: CB2,
-    [Camels.Red]: CR2,
-    [Camels.Green]: CG2,
-    [Camels.Orange]: CO2,
-    [Camels.White]: CW2,
+    [Camels.BLUE]: CB2,
+    [Camels.RED]: CR2,
+    [Camels.GREEN]: CG2,
+    [Camels.ORANGE]: CO2,
+    [Camels.WHITE]: CW2,
   };

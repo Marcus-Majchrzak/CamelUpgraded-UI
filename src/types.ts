@@ -60,24 +60,24 @@ export const strToRaceBetType = (type: string): RaceBetTypes => {
 }
 
 export enum Camels { 
-    Blue ='BLUE',
-    Red = 'RED', 
-    Green = 'GREEN', 
-    Orange = 'ORANGE', 
-    White = 'WHITE'
+    BLUE ='BLUE',
+    RED = 'RED', 
+    GREEN = 'GREEN', 
+    ORANGE = 'ORANGE', 
+    WHITE = 'WHITE'
 }
 export const strToCamel = (camel: string): Camels => {
     switch (camel.toLocaleLowerCase()){
         case('blue'): 
-            return Camels.Blue
+            return Camels.BLUE
         case('red'): 
-            return Camels.Red
+            return Camels.RED
         case('green'): 
-            return Camels.Green
+            return Camels.GREEN
         case('orange'): 
-            return Camels.Orange
+            return Camels.ORANGE
         case('white'): 
-            return Camels.White
+            return Camels.WHITE
         default:
             throw new Error(`String Parameter is not a camel color: "${camel}" (strToCamel)`)
     }
