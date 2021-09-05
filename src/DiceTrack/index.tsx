@@ -17,7 +17,7 @@ const DiceTrack = (props: DiceTrackType) => {
   const getOtherRolledCamels = (excludedCamel: Camels) => {
     return props.diceRolled
       .map((dice) => dice.camel)
-      .filter((camel) => camel != excludedCamel);
+      .filter((camel) => camel !== excludedCamel);
   };
 
   return (

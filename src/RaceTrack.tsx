@@ -31,6 +31,7 @@ const RaceTrackSpace = styled.div`
 const Position = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 type SquareType = {
   isTileActivated: boolean;

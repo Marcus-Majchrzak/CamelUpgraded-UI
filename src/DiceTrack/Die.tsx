@@ -31,7 +31,7 @@ type DiceTrackType = {
 
 const Dice = (props: DiceTrackType) => {
   const { diceRoll, rolledCamels } = props;
-  const TOTAL_TICKS = 40;
+  const TOTAL_TICKS = 25;
 
   const randDiceValue = () => Math.floor(Math.random() * 3 + 1);
   const randColorValue = (currentCamel?: Camels) => {
@@ -41,10 +41,13 @@ const Dice = (props: DiceTrackType) => {
     );
     console.log(currentCamel, filteredCamels);
     const randomKey = Math.floor(Math.random() * filteredCamels.length);
+
     return strToCamel(filteredCamels[randomKey]);
   };
   const determineDiceColor = () => {
-    if (ticks >= (TOTAL_TICKS / 5) * 4) {
+    const numCamelsLeft = Object.keys(Camels).length - rolledCamels.length;
+    console.log(">>!", rolledCamels.length, Object.keys(Camels).length);
+    if (ticks >= TOTAL_TICKS - 10 || numCamelsLeft === 1) {
       return diceRoll.camel;
     }
     return randColorValue(diceColor.current);
