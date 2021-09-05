@@ -10,6 +10,7 @@ import Announcer from "./Announcer";
 import styled from "@emotion/styled";
 import LegBids from "./LegBids";
 import { useState } from "react";
+import EndScreen from "./EndScreen";
 
 const GameArea = styled.div`
   position: relative;
@@ -87,6 +88,7 @@ const Game = (props: WebSocketProps) => {
         setTileActivated={setTileActivated}
       />
       <PlayerAssets {...players[me]} />
+      {playerTurn === -1 && <EndScreen players={players} />}
     </GameArea>
   );
 };

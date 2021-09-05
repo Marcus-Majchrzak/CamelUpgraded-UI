@@ -8,6 +8,7 @@ export type PlayerType = {
     name: string,
     money: number,
     legBets: Array<LegBetType>
+    incomeTable: Record<string, Array<number>>
 }
 export type BoardStateType = {
     camelPositions: Array<Array<Camels>>

@@ -17,8 +17,10 @@ type AnnouncerType = {
 const Announcer = (props: AnnouncerType) => {
   const { players, playerTurn, isMyTurn } = props;
   const AnnouncementString = (): String => {
-    const playerName = players[playerTurn].name;
-    if (isMyTurn) {
+    const playerName = players[playerTurn]?.name;
+    if (!playerName) {
+      return "Game Over!";
+    } else if (isMyTurn) {
       return `It's Your Turn, ${playerName}`;
     }
     return `${playerName} is making a move`;
